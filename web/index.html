@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MiniCpp</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">M</div>
+    <div class="brand-title">MiniCpp</div>
+  </header>
+
+  <main class="workspace">
+    <section class="editor-panel panel">
+      <div class="panel-heading">
+        <div><span class="step">01</span><h1>Вхідний код</h1></div>
+        <select id="exampleSelect" aria-label="Приклади">
+          <option value="factorial">Факторіал + for</option>
+          <option value="functions">Функції та double</option>
+          <option value="while">while + логіка</option>
+          <option value="void">void-функція</option>
+          <option value="print">Виведення (print)</option>
+          <option value="badsyntax">Помилка синтаксису</option>
+          <option value="badsemantic">Помилка семантики</option>
+        </select>
+      </div>
+      <div class="editor-wrap">
+        <div class="line-numbers" id="lineNumbers">1</div>
+        <textarea id="source" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Код MiniCpp"></textarea>
+      </div>
+      <div class="editor-footer">
+        <span id="sourceStats">0 рядків</span>
+        <div class="actions">
+          <button class="button button-quiet" id="resetBtn">Скинути</button>
+          <button class="button button-primary" id="compileBtn"><span>▶</span> Аналізувати й виконати</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="results-panel">
+      <div class="status-strip panel" id="statusStrip">
+        <div class="status-item"><span class="status-indicator idle" id="syntaxIndicator"></span><span>Синтаксис</span><strong id="syntaxStatus">Очікує запуску</strong></div>
+        <div class="status-item"><span class="status-indicator idle" id="semanticIndicator"></span><span>Семантика</span><strong id="semanticStatus">Очікує запуску</strong></div>
+        <div class="status-item result-status"><span class="status-indicator idle" id="runIndicator"></span><span>Виконання</span><strong id="runStatus">Очікує запуску</strong></div>
+      </div>
+
+      <div class="panel output-panel">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="diagnostics">Результат</button>
+          <button class="tab" data-tab="ast">AST <span class="tab-count" id="astCount">0</span></button>
+          <button class="tab" data-tab="python">Python</button>
+        </div>
+        <div class="tab-content active" id="tab-diagnostics">
+          <div class="result-card" id="resultCard">
+            <div class="result-icon neutral" id="resultIcon">⌁</div>
+            <div><div class="result-title" id="resultTitle">Готовий до аналізу</div><div class="result-description" id="resultDescription">Вибери приклад або введи власну програму MiniCpp.</div></div>
+          </div>
+          <div class="diagnostics-list" id="diagnosticsList"><div class="empty-state">Повідомлення аналізатора з'являться тут.</div></div>
+        </div>
+        <div class="tab-content" id="tab-ast">
+          <div class="ast-toolbar"><span id="astHint">Дерево абстрактного синтаксису</span><button class="button button-quiet button-small" id="resetViewBtn">Скинути масштаб</button></div>
+          <div class="ast-canvas" id="astCanvas"><div class="empty-state">Спочатку запусти аналіз програми.</div></div>
+        </div>
+        <div class="tab-content" id="tab-python">
+          <div class="code-toolbar"><span>Згенерований Python 3</span><div><button class="button button-quiet button-small" id="copyPythonBtn">Копіювати</button><button class="button button-quiet button-small" id="downloadPythonBtn">Завантажити .py</button></div></div>
+          <pre class="python-output" id="pythonOutput"><code># Python-код з'явиться після успішного аналізу</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
